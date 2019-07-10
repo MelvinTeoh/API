@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <title>API's</title>
+  </head>
+  <body>
+    <div id="content-container"></div>
+    <script>
+      $.ajax({
+        url:
+          "http://api.giphy.com/v1/gifs/random?api_key=AkIomwKTAJLGyT3DABfpDlNevZRpqcoJ",
+        method: "GET",
+        success: function(response) {
+          $("#content-container").append(
+            `<img src="${response.data.image_original_url}" />`
+          );
+        }
+      });
+      $.ajax({
+        url: "https://api.chucknorris.io/jokes/random",
+        method: "GET",
+        success: function(response) {
+          $("#content-container").append(`<h3>${response.value}</h3>`);
+        },
+        error: function(error){
+          console.log(error)
+        }
+      });
+    </script>
+  </body>
+</html>
